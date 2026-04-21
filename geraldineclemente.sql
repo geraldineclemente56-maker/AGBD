@@ -8,6 +8,7 @@ JOIN albums a ON t.AlbumId = a.AlbumId
 WHERE a.Title = 'Big Ones'
 ORDER BY t.Milliseconds DESC;
 
+
 --Nombre y precio total de los 10 discos más baratos
 
 --EJERCICIO 3
