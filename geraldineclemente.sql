@@ -8,20 +8,38 @@ JOIN albums a ON t.AlbumId = a.AlbumId
 WHERE a.Title = 'Big Ones'
 ORDER BY t.Milliseconds DESC;
 
+--Nombre y precio total de los 10 discos más baratos
+
 --EJERCICIO 3
-SELECT a.Title, SUM(t.UnitPrice) AS PrecioTotal 
-FROM albums a
-JOIN tracks t ON a.AlbumId = t.AlbumId
-GROUP BY a.AlbumId
-ORDER BY PrecioTotal ASC
+SELECT UnitPrice , name 
+from tracks 
+order by UnitPrice ASC
 LIMIT 10;
 
---EJERCICIO 4
-SELECT t.Name AS Tema, g.Name AS Genero, a.Title AS Disco
-FROM tracks t
-JOIN genres g ON t.GenreId = g.GenreId
-JOIN albums a ON t.AlbumId = a.AlbumId
-WHERE t.UnitPrice = 0.99
-ORDER BY t.Name ASC;
+--Ejercicio 4
+SELECT name, GenreId, albumid, UnitPrice
+FROM tracks
+WHERE UnitPrice = 0.99 
 
---EJERCICIO 5
+--ejercicio 5
+SELECT tracks.name, artists.Name, tracks.Milliseconds,  albums.Title
+FROM tracks 
+JOIN artists on tracks.AlbumId = albums.AlbumId
+JOIN artists ON albums.ArtistId = artists.ArtistId
+ORDER BY tracks.Milliseconds ASC
+limit 20;
+
+
+--ejercicio 6
+--Apellido, puesto, apellido del jefe y cantidad de 
+--clientes que atiende de todos los empleados, ordenado 
+--desde los que atienden más clientes a los que atienden 
+--menos.
+SELECT emp.LastName AS empleado, jefe.LastName AS jefe, COUNT(*)  FROM employees emp
+JOIN employees jefe ON emp.ReportsTo = jefe.EmployeeId
+JOIN customers cus ON emp.EmployeeId = cus.SupportRepId
+GROUP BY emp.EmployeeId
+ORDER by jefe ASC
+
+
+-- ejercicio 7
