@@ -44,3 +44,6 @@ ORDER by jefe ASC
 
 
 -- ejercicio 7
+SELECT emp.LastName, emp.FirstName, c.FirstName, c.LastName
+FROM empleados e
+JOIN Clientes c on e.id = c.id_empleado;
