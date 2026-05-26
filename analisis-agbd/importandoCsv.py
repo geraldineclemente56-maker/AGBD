@@ -18,6 +18,21 @@ print(df.head())
 #total_medalist =df['medalist_name'].count()
 #esta contando todos los nombres 
 
-total_medalist =df['medalist_name'].sum()
+#total_medalist =df['medalist_name'].sum()
 
-print(f"Total de registros:{total_medalist}")
+#print(f"Total de registros:{total_medalist}")
+
+#filtro_avanzado= df['lon'].str.startswith('1', na=False)
+#df_filtrado= df[filtro_avanzado]
+
+#print(f"")
+df['Inversion_USD'] = 25000
+
+#hice un reporte financiero básico: ¿Cuánto se gastó por género?
+reporte_genero = df['sex_or_gender'].str.startswith('female', na = False)
+df_genero = df[reporte_genero]
+sum_dinero = df_genero['Inversion_USD'].sum()
+
+print("--- REPORTE TOTAL DE INVERSIÓN POR GÉNERO ---")
+print(reporte_genero)
+print(sum_dinero)
