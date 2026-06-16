@@ -1,5 +1,6 @@
-
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 #sudo apt install python3-pip
 #pip3 install pandas
@@ -22,17 +23,55 @@ print(df.head())
 
 #print(f"Total de registros:{total_medalist}")
 
-#filtro_avanzado= df['lon'].str.startswith('1', na=False)
-#df_filtrado= df[filtro_avanzado]
+filtro_avanzado= df["event_name"].str.startswith("athletics", na=False)
+df_filtrado= df[filtro_avanzado]
+sum_latitud=df_filtrado["lat"].sum()
 
-#print(f"")
+#print("----reporte----")
+print (f"Monto analizado:USD {sum_latitud:.2f} millones")
 df['Inversion_USD'] = 25000
 
-#hice un reporte financiero básico: ¿Cuánto se gastó por género?
-reporte_genero = df['sex_or_gender'].str.startswith('female', na = False)
-df_genero = df[reporte_genero]
-sum_dinero = df_genero['Inversion_USD'].sum()
+#condicional
 
-print("--- REPORTE TOTAL DE INVERSIÓN POR GÉNERO ---")
-print(reporte_genero)
-print(sum_dinero)
+if default_limite_alto:= (sum_latitud > 5000):
+    print ("¡Alerta! El monto total supera lo establecido.")
+    print("Requiere revision inmediata")
+
+elif sum_latitud < 1000:
+   print("Aviso: mercado moderado/alto")
+   print("Monitorear comportamiento prox trim")
+else:
+    print("Mercado estable, sin alertas por el momento.")
+
+
+#Grafico de barras usando toda DF
+print("\n [Generando GRAFICO de barras]")
+
+sns.set_theme(style="whitegrid")
+plt.figure(figsize=(10,6))
+sns.barplot(
+    data=df,
+    x="event_name",
+    y="lat",
+    estimator=sum,
+    errorbar=None,
+    palette="viridis",
+)
+plt.title("Comparativa de Mercado por tipo de Hardware",fontsize= 14)
+plt.xticks(rotation=20)
+
+#Guiardo grafico generado
+plt.savefig ("grafico_barra.png", dpi=300)
+plt.close
+
+
+
+
+#hice un reporte financiero básico: ¿Cuánto se gastó por género?
+#eporte_genero = df['sex_or_gender'].str.startswith('female', na = False)
+#df_genero = df[reporte_genero]
+#sum_dinero = df_genero['Inversion_USD'].sum()
+
+#print("--- REPORTE TOTAL DE INVERSIÓN POR GÉNERO ---")
+#print(reporte_genero)
+#print(sum_dinero)
