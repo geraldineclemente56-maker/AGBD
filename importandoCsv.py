@@ -150,8 +150,6 @@ print(
     (df_filtrado["sex_or_gender"].value_counts(normalize=True) * 100).round(1)
 )
 
-
-
 #hice un reporte financiero básico: ¿Cuánto se gastó por género?
 #eporte_genero = df['sex_or_gender'].str.startswith('female', na = False)
 #df_genero = df[reporte_genero]
